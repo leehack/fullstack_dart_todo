@@ -1,0 +1,12 @@
+name: remote_todo
+
+packages:
+  - packages/*
+
+scripts:
+  analyze:
+    exec: dart analyze .
+  frogDev:
+    exec: dart_frog dev
+    packageFilters:
+      dependsOn: [dart_frog]
