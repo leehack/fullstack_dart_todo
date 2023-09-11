@@ -1,20 +1,20 @@
 import 'dart:convert';
 
-import 'package:todo/todo.dart';
 import 'package:http/http.dart' as http;
+import 'package:todo/todo.dart';
 
 const baseURL = "http://localhost:8080";
+const baseHeaders = {
+  'Origin': baseURL,
+  'Content-Type': 'application/json',
+};
 
 class RemoteTodoRepository implements TodoRepository {
   @override
   Future<Todo> add(Todo todo) async {
-    final client = http.Client();
-    final response = await client.post(
+    final response = await http.Client().post(
       Uri.parse("$baseURL/todos"),
-      headers: {
-        'Origin': 'http://localhost:8080',
-        'Content-Type': 'application/json',
-      },
+      headers: baseHeaders,
       body: jsonEncode(todo.asMap),
     );
     final json = response.body;
@@ -24,25 +24,17 @@ class RemoteTodoRepository implements TodoRepository {
 
   @override
   Future<void> deleteById(String id) async {
-    final client = http.Client();
-    await client.delete(
+    await http.Client().delete(
       Uri.parse("$baseURL/todos/$id"),
-      headers: {
-        'Origin': 'http://localhost:8080',
-        'Content-Type': 'application/json',
-      },
+      headers: baseHeaders,
     );
   }
 
   @override
   Future<List<Todo>> fetchAll() async {
-    final client = http.Client();
-    final response = await client.get(
+    final response = await http.Client().get(
       Uri.parse("$baseURL/todos"),
-      headers: {
-        'Origin': 'http://localhost:8080',
-        'Content-Type': 'application/json',
-      },
+      headers: baseHeaders,
     );
     final json = response.body;
 
@@ -51,14 +43,8 @@ class RemoteTodoRepository implements TodoRepository {
 
   @override
   Future<Todo> getById(String id) async {
-    final client = http.Client();
-    final response = await client.get(
-      Uri.parse("$baseURL/todos/$id"),
-      headers: {
-        'Origin': 'http://localhost:8080',
-        'Content-Type': 'application/json',
-      },
-    );
+    final response = await http.Client()
+        .get(Uri.parse("$baseURL/todos/$id"), headers: baseHeaders);
     final json = response.body;
 
     return Todo.fromMap(jsonDecode(json));
@@ -66,13 +52,9 @@ class RemoteTodoRepository implements TodoRepository {
 
   @override
   Future<void> updateById(Todo todo) async {
-    final client = http.Client();
-    await client.put(
+    await http.Client().put(
       Uri.parse("$baseURL/todos/${todo.id}"),
-      headers: {
-        'Origin': 'http://localhost:8080',
-        'Content-Type': 'application/json',
-      },
+      headers: baseHeaders,
       body: jsonEncode(todo.asMap),
     );
   }

@@ -5,6 +5,4 @@ import 'package:todo/todo.dart';
 part 'todo_repository_provider.g.dart';
 
 @Riverpod(keepAlive: true)
-TodoRepository todoRepository(TodoRepositoryRef ref) {
-  return RemoteTodoRepository();
-}
+TodoRepository todoRepository(TodoRepositoryRef ref) => RemoteTodoRepository();

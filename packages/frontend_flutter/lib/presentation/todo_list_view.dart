@@ -30,11 +30,16 @@ class TodoItem extends ConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(todo.title),
+        Text(
+          todo.title,
+          style: TextStyle(
+            decoration: todo.isDone ? TextDecoration.lineThrough : null,
+          ),
+        ),
         Checkbox(
           value: todo.isDone,
           onChanged: (value) {
-            ref.read(todoListProvider.notifier).toggle(todo);
+            ref.read(todoListProvider.notifier).toggleDone(todo);
           },
         ),
       ],

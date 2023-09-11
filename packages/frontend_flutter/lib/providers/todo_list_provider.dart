@@ -18,11 +18,9 @@ class TodoList extends _$TodoList {
     });
   }
 
-  void toggle(Todo todo) async {
+  void toggleDone(Todo todo) async {
     state = await AsyncValue.guard(() async {
-      await ref
-          .read(todoRepositoryProvider)
-          .updateById(todo.copyWith(isDone: !todo.isDone));
+      await ref.read(todoRepositoryProvider).updateById(todo.toggleDone());
       return ref.read(todoRepositoryProvider).fetchAll();
     });
   }

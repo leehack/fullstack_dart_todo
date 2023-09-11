@@ -9,6 +9,8 @@ class Todo {
     this.isDone = false,
   });
 
+  Todo toggleDone() => copyWith(isDone: !isDone);
+
   Todo copyWith({
     String? id,
     String? title,

@@ -17,15 +17,13 @@ class _TodoTextFieldState extends ConsumerState<TodoTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      decoration: const InputDecoration(
-        hintText: 'Enter a new todo',
-      ),
+      decoration: const InputDecoration(hintText: 'Enter a new todo'),
       focusNode: focusNode,
       controller: controller,
       onSubmitted: (value) async {
-        await ref.read(todoListProvider.notifier).add(
-              Todo(id: '', title: value),
-            );
+        await ref
+            .read(todoListProvider.notifier)
+            .add(Todo(id: '', title: value));
         controller.clear();
         focusNode.requestFocus();
       },
