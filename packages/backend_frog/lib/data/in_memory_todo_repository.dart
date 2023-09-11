@@ -26,7 +26,7 @@ class InMemoryTodoRepository implements TodoRepository {
   Future<void> deleteById(String id) async {
     data = [
       for (final t in data)
-        if (t.id != id) t
+        if (t.id != id) t,
     ];
   }
 
@@ -39,7 +39,7 @@ class InMemoryTodoRepository implements TodoRepository {
   Future<void> updateById(Todo todo) async {
     data = [
       for (final t in data)
-        if (t.id == todo.id) todo else t
+        if (t.id == todo.id) todo else t,
     ];
   }
 }

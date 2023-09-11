@@ -13,7 +13,7 @@ Future<Response> onRequest(RequestContext context) async {
 
 Future<Response> _get(RequestContext context) async {
   final todos = await context.read<TodoRepository>().fetchAll();
-  final json = [for (var todo in todos) todo.asMap];
+  final json = [for (final todo in todos) todo.asMap];
   return Response.json(body: json);
 }
 
