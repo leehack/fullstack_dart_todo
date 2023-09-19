@@ -21,9 +21,7 @@ class _TodoTextFieldState extends ConsumerState<TodoTextField> {
       focusNode: focusNode,
       controller: controller,
       onSubmitted: (value) async {
-        await ref
-            .read(todoListProvider.notifier)
-            .add(Todo(id: '', title: value));
+        await ref.read(todoListProvider.notifier).add(Todo(title: value));
         controller.clear();
         focusNode.requestFocus();
       },
