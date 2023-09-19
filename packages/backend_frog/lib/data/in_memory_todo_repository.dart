@@ -36,7 +36,7 @@ class InMemoryTodoRepository implements TodoRepository {
   }
 
   @override
-  Future<void> updateById(Todo todo) async {
+  Future<void> update(Todo todo) async {
     data = [
       for (final t in data)
         if (t.id == todo.id) todo else t,

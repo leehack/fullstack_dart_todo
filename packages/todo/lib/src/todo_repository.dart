@@ -5,5 +5,5 @@ abstract interface class TodoRepository {
   Future<Todo> getById(String id);
   Future<Todo> add(Todo todo);
   Future<void> deleteById(String id);
-  Future<void> updateById(Todo todo);
+  Future<void> update(Todo todo);
 }

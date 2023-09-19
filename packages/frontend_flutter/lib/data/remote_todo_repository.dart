@@ -51,7 +51,7 @@ class RemoteTodoRepository implements TodoRepository {
   }
 
   @override
-  Future<void> updateById(Todo todo) async {
+  Future<void> update(Todo todo) async {
     await http.Client().put(
       Uri.parse("$baseURL/todos/${todo.id}"),
       headers: baseHeaders,

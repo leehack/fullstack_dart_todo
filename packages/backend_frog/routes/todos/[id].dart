@@ -21,7 +21,7 @@ Future<Response> _get(RequestContext context, String id) async {
 Future<Response> _put(RequestContext context, String id) async {
   final json = await context.request.json() as Map<String, dynamic>;
   final todo = Todo.fromMap(json);
-  await context.read<TodoRepository>().updateById(todo);
+  await context.read<TodoRepository>().update(todo);
   return Response();
 }
 
